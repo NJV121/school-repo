@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Uploaded photos are stored here and served from /assets/uploads/...
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# The admin panel edits a single file: content/site-data.json
+# The homepage (index.html) reads that same file to show the content live.
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "content"
+        label: "Homepage Content"
+        file: "content/site-data.json"
+        fields:
+          - label: "Homepage Background Photo"
+            name: "hero_photo"
+            widget: "image"
+            required: false
+            hint: "Shown behind the headline at the top of the homepage. Leave empty to keep the default design."
+
+          - label: "Events Gallery"
+            name: "events"
+            widget: "list"
+            required: false
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Photo", name: "photo", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+
+          - label: "Toppers"
+            name: "toppers"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Photo", name: "photo", widget: "image" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Class", name: "class", widget: "string", required: false }
+              - { label: "Details (marks / percentage)", name: "detail", widget: "string", required: false }
