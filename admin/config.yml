@@ -1,13 +1,33 @@
 backend:
   name: git-gateway
+  repo: NJV121/school-repo
   branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/fb92381f-7932-483f-ad76-ec94df12b6eb/pkce
+  auth_token_endpoint: /sites/fb92381f-7932-483f-ad76-ec94df12b6eb/token
+  gateway_url: https://gateway.decapbridge.com
 
-# Uploaded photos are stored here and served from /assets/uploads/...
+commit_messages:
+  create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+site_url: https://njvpublicschool.netlify.app
+
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-# The admin panel edits a single file: content/site-data.json
-# The homepage (index.html) reads that same file to show the content live.
 collections:
   - name: "site"
     label: "Website Content"
